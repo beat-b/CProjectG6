@@ -1,133 +1,120 @@
-"""
-Chat
-"""
-import datetime
 import time
 import streamlit as st
-import openai 
-from chat_bot import ChatBot
+from chat_bot import PizzaChatBot
+from langchain.prompts import PromptTemplate
+from prompt_list import *
+import pandas as pd
 
 
+def chatbot(session_state):
+    def initialize() -> None:
+        with st.expander("Bot Configuration"):
+            selected_prompt_name = st.selectbox(label="Select Prompt", options=prompt_names)
+            session_state.selected_prompt_name = selected_prompt_name  # Store selected prompt in session state
 
-# [i]                                                                                            #
-# [i] Initialize                                                                                 #
-# [i]                                                                                            #
+            # Use the selected prompt name to retrieve the corresponding prompt text
+            selected_prompt_text = prompt_templates[selected_prompt_name]
+            
+            st.session_state.system_behavior = st.text_area(
+                label="Prompt",
+                value=selected_prompt_text
+            )
 
+            # Retrieve the username from session_state
+            st.session_state.username = st.session_state.username
 
-def initialize():
-    st.title("Out&About 🛩")
-    st.markdown("This 24/7 virtual assistant provides uninterrupted support to our users, ensuring that they have access to information and suggestions to explore Lisbon at any time. Our chatbot will make our online presence stronger and improve the visitor experience by giving personalized suggestions, answering questions, and helping with trip planning. At this early stage, our chatbot primarily supports English inquiries, however, we will continually work to expand its language capabilities to serve a wider audience.")
-    if "chatbot" not in st.session_state:
-        st.session_state.chatbot = ChatBot()
-        # chatBot = ChatBotStatic()
+            # Initialize or update the chatbot with the current system behavior and username
+            if "chatbot" not in st.session_state or st.session_state.chatbot.system_behavior != st.session_state.system_behavior:
+                st.session_state.chatbot = PizzaChatBot(st.session_state.system_behavior)
+                st.session_state.chatbot.set_username(st.session_state.username)
 
+        with st.sidebar:
+            st.markdown(
+                f"ChatBot in use: <font color='cyan'>{st.session_state.chatbot.__str__()}</font>", unsafe_allow_html=True
+            )
 
-# [i]                                                                                            #
-# [i] Display all messages                                                                       #
-# [i]                                                                                            #
+    def display_history_messages():
+        for message in session_state.chatbot.memory:
+             if message["role"] != "system":
+                with st.chat_message(message["role"]):
+                    st.markdown(message["content"])
 
-def display_history_messages():
+    def display_user_msg(message: str):
+        with st.chat_message("user", avatar="😎"):
+            st.markdown(message)
+            
+    def display_assistant_msg(message: str, animated=True):
+        """
+        Display assistant message
+        """
 
-    # {"role": "assistant", "content": message}
+        if animated:
+            with st.chat_message("assistant", avatar="🤖"):
+                message_placeholder = st.empty()
 
-    for message in st.session_state.chatbot.memory:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
+                # Simulate stream of response with milliseconds delay
+                full_response = ""
+                for chunk in message.split():
+                    full_response += chunk + " "
+                    time.sleep(0.05)
 
+                    # Add a blinking cursor to simulate typing
+                    message_placeholder.markdown(full_response + "▌")
 
-# [i]                                                                                            #
-# [i] Display User messages                                                                      #
-# [i]                                                                                            #
+                message_placeholder.markdown(full_response)
+        else:
+            with st.chat_message("assistant", avatar="🤖"):
+                st.markdown(message)
 
+    # List of prompt names
+    prompt_names = [
+        "Explore Lisbon ChatBot with User Login", "Explore a specific area", "Personalized Recommendations", "Ratings and Reviews", "Nearby Attractions",
+        "Daily Specials", "Weather Consideration", "City Events Navigator", "Architectural Wonders", "Lisbon by Night"
+    ]
 
-def display_user_msg(message: str):
-    """
-    Display user message in chat message container
-    """
-    st.session_state.chatbot.memory.append(
-        {"role": "user", "content": message}
-    )
+    # Create individual PromptTemplate instances for each prompt
+    exploring_lisbon_template = PromptTemplate.from_template(template=exploring_lisbon["prompt"])
+    exploring_area_template = PromptTemplate.from_template(template=exploring_area["prompt"])
+    personalized_recommendations_template = PromptTemplate.from_template(template=personalized_recommendations["prompt"])
+    ratings_and_reviews_template = PromptTemplate.from_template(template=ratings_and_reviews["prompt"])
+    nearby_attractions_template = PromptTemplate.from_template(template=nearby_attractions["prompt"])
+    daily_specials_template = PromptTemplate.from_template(template=daily_specials["prompt"])
+    weather_consideration_template = PromptTemplate.from_template(template=weather_consideration["prompt"])
+    city_events_navigator_template = PromptTemplate.from_template(template=city_events_navigator["prompt"])
+    architectural_wonders_template = PromptTemplate.from_template(template=architectural_wonders["prompt"])
+    lisbon_by_night_template = PromptTemplate.from_template(template=lisbon_by_night["prompt"])
 
-    with st.chat_message("user", avatar="😎"):
-        st.markdown(message)
-    
+    # Create a dictionary to map prompt names to their corresponding PromptTemplate instances
+    prompt_templates = {
+        "Explore Lisbon ChatBot with User Login": exploring_lisbon_template,
+        "Explore a specific area": exploring_area_template,
+        "Personalized Recommendations": personalized_recommendations_template,
+        "Ratings and Reviews": ratings_and_reviews_template,
+        "Nearby Attractions": nearby_attractions_template,
+        "Daily Specials": daily_specials_template,
+        "Weather Consideration": weather_consideration_template,
+        "City Events Navigator": city_events_navigator_template,
+        "Architectural Wonders": architectural_wonders_template,
+        "Lisbon by Night": lisbon_by_night_template
+    }
 
-# [i]                                                                                            #
-# [i] Display Assistant Message                                                                  #
-# [i]                                                                                            #
-
-
-def display_assistant_msg(message: str):
-    """
-    Display user message in chat message container
-    """
-    with st.chat_message("assistant", avatar="🤖"):
-        message_placeholder = st.empty()  # markdown(message)
-
-    # animate
-    full_response = ""
-    for chunk in message.split():
-        full_response += chunk + " "
-        time.sleep(0.05)
-        message_placeholder.markdown(full_response + "▌")
-
-    message_placeholder.markdown(full_response)
-
-    st.session_state.chatbot.memory.append(
-        {"role": "assistant", "content": message}
-    )
-
-# [i]                                                                                            #
-# [i] Main                                                                                       #
-# [i]                                                                                            #
-
-if __name__ == "__main__":
-    # initialize
+    # Initialize the chatbot
     initialize()
 
-    # show all messages
+    # Display all messages
     display_history_messages()
 
-
-    if prompt := st.chat_input("Type your request..."):
-        # user send a message and we display the message
+    if prompt:= st.chat_input("Type your request..."):
+        # user sends a message and we display the message
         display_user_msg(message=prompt)
 
         # chatBot generates the response
-        assistant_response = st.session_state.chatbot.generate_response(
-            message=prompt)
+        assistant_response = session_state.chatbot.generate_response(message=prompt)
 
         # Display chatBot response
         display_assistant_msg(message=assistant_response)
 
         # After all the chat interactions
         with st.sidebar:
-            st.title("Answer ☞")
-
-            # input
-            user_input = st.text_input("Enter your name", "Your Name")
-            
-            # Date Input Widget
-            date_input = st.sidebar.date_input(
-                "Pick a date", datetime.date(2023, 1, 1))  # Create a date input field
-            st.sidebar.write("Selected date:", date_input)  # Display the selected date
-
-            # Time Input Widget
-            time_input = st.sidebar.time_input(
-                "Set a time", datetime.time(12, 00))  # Create a time input field
-            st.sidebar.write("Selected time:", time_input)  # Display the selected time
-
-            # Button Widget
-            if st.button("Click me"):  # Create a button
-                st.write("Button clicked!")  # Display a message when the button is clicked
-
-            # select box
-            option = st.selectbox("Choose an option", ["Option 1", "Option 2", "Option 3"])
-            st.write("You selected:", option)
-
             st.text("Memory")
-            st.write(st.session_state.chatbot.memory)
-
-        
-
-        
+            st.write(session_state.chatbot.memory)
