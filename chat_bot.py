@@ -1,7 +1,7 @@
 """
 ChatBot classes
 """
-from langchain.llms import OpenAI
+from openai import OpenAI
 from util import local_settings
 
 from langchain.document_loaders.csv_loader import CSVLoader
@@ -37,20 +37,21 @@ class GPT_Helper:
         print("Type of Text Chunks:", type(text_chunks))
 
         embeddings = OpenAIEmbeddings()
-        return embeddings.embed_query(text_chunks)
+        return embeddings.embed_documents(text_chunks)
 
-    def build_faiss_index(self, embeddings):
-        return FAISS.from_embeddings(embeddings)
+    def build_faiss_index(self, text_chunks, embeddings):
+        return FAISS.from_embeddings(text_chunks, embeddings)
 
     def search_similar_places(self, query, k=3):
         return self.faiss_index.similarity_search(query, k)
 
     def get_completion_with_data(self, prompt, temperature=0):
         # Load CSV data, create embeddings, and build FAISS index
-        data = self.load_csv_data("/Users/mariananeto/Documents/GitHub/CProjectG6/LisbonTrip_Final.csv")
+        data = self.load_csv_data("./data/cleanTripLisbon.csv")
         text_chunks = self.text_splitter.split_documents(data)
-        embeddings = self.create_embeddings(text_chunks)
-        self.faiss_index = self.build_faiss_index(embeddings)
+        string_list = [str(item) for item in text_chunks]
+        embeddings = self.create_embeddings(string_list)
+        # self.faiss_index = self.build_faiss_index(text_chunks,embeddings)
 
         # Append user prompt and perform completion
         self.messages.append({"role": "user", "content": prompt})
