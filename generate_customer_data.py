@@ -40,7 +40,7 @@ def generate_fake_data(num_records: int = 10) -> List[List[Union[str, int]]]:
 
     return data
 
-def export_to_csv(data: List[List[Union[str, int]]], filename: str = "customer_data.csv") -> None:
+def export_to_csv(data: List[List[Union[str, int]]], filename: str = "./data/customer_data.csv") -> None:
     """
     Export customer data to a CSV file.
     --------------------------
@@ -56,7 +56,7 @@ def export_to_csv(data: List[List[Union[str, int]]], filename: str = "customer_d
         writer.writerows(data)
 
 if __name__ == "__main__":
-    num_records = 200
+    num_records = 1000
     customer_data = generate_fake_data(num_records)
     export_to_csv(customer_data)
 
