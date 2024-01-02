@@ -1,9 +1,10 @@
 import time
 import streamlit as st
-from chat_bot import PizzaChatBot
+from chat_bot import AttractionBot
 from langchain.prompts import PromptTemplate
 from prompt_list import *
 import pandas as pd
+# from embeddings import DB_FAISS_PATH, docsearch, embeddings
 
 
 def chatbot(session_state):
@@ -23,9 +24,12 @@ def chatbot(session_state):
             # Retrieve the username from session_state
             st.session_state.username = st.session_state.username
 
+            # Call get_embeddings_data to obtain the necessary data
+            # vector_store, text_chunks = get_embeddings_data(DB_FAISS_PATH)
+
             # Initialize or update the chatbot with the current system behavior and username
             if "chatbot" not in st.session_state or st.session_state.chatbot.system_behavior != st.session_state.system_behavior:
-                st.session_state.chatbot = PizzaChatBot(st.session_state.system_behavior)
+                st.session_state.chatbot = AttractionBot(st.session_state.system_behavior)
                 st.session_state.chatbot.set_username(st.session_state.username)
 
         with st.sidebar:
