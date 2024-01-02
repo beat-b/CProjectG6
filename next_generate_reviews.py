@@ -96,7 +96,7 @@ for _, row in trip_bot_df.iterrows():
     # Save customers
     copy_customer.to_csv('./data/copy_customer.csv', index=False)
 
-# Save reviews
+# Save final reviews
 reviews_df.to_csv('./data/reviews.csv', index=False)
-# Save customers
+# Save final customers
 copy_customer.to_csv('./data/copy_customer.csv', index=False)
