@@ -10,10 +10,11 @@ client = OpenAI(api_key=local_settings.OPENAI_API_KEY)
 
 # Load the CSV files into DataFrames
 trip_df = pd.read_csv('./data/cleanTripLisbon.csv', index_col='Unnamed: 0')
-customer_df = pd.read_csv('./data/customer_data.csv')
+reviews_df = pd.read_csv('./data/reviews.csv')
+copy_customer = pd.read_csv('./data/copy_customer.csv')
 
-# Create reviews_df
-reviews_df = pd.DataFrame(columns=['Username', 'Place', 'OverallRating', 'Review', 'Rating'])
+# Get last reviewd activity
+last_place = reviews_df['Place'].iloc[-1]
 
 # Remove rows with no reviews
 trip_bot_df = trip_df[trip_df['ReviewsNo'] != 0]
@@ -21,12 +22,11 @@ trip_bot_df = trip_df[trip_df['ReviewsNo'] != 0]
 # Select top 200 rows
 trip_bot_df = trip_bot_df.head(200).copy()
 
+# Select activities without any review
+trip_bot_df = trip_bot_df.iloc[trip_bot_df[trip_bot_df['Name'] == last_place].index[0]:]
+
 # Create a list of column names containing "Rating"
 rating_columns = [col for col in trip_df.columns if 'Rating' in col if col != 'Rating']
-
-# Create dataframe to check if number of reviews does not exceed number of trips
-copy_customer = customer_df[['Username', 'Planned Trips']].copy()
-copy_customer['ReviewsNo'] = 0
 
 # Define messages
 messages =  [
@@ -91,6 +91,12 @@ for _, row in trip_bot_df.iterrows():
             reviews_df = pd.concat([reviews_df, review_dict], ignore_index=True)
             # Count if the number of reviews does not exceed the number of trips for the customer
             copy_customer['ReviewsNo'].iloc[customer.index[0]] += 1
+    # Save reviews
+    reviews_df.to_csv('./data/reviews.csv', index=False)
+    # Save customers
+    copy_customer.to_csv('./data/copy_customer.csv', index=False)
 
 # Save reviews
 reviews_df.to_csv('./data/reviews.csv', index=False)
+# Save customers
+copy_customer.to_csv('./data/copy_customer.csv', index=False)
