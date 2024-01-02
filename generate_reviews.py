@@ -2,6 +2,8 @@ from reviews_utils import *
 import pandas as pd
 from util import local_settings
 from openai import OpenAI
+import warnings
+warnings.filterwarnings('ignore')
 
 # OpenAI API Key
 client = OpenAI(api_key=local_settings.OPENAI_API_KEY)
@@ -36,7 +38,59 @@ messages =  [
 ]
 
 # Generate reviews
-trip_bot_df.apply(lambda row: generate_reviews(row, reviews_df, copy_customer, rating_columns, messages, client), axis = 1)
+for _, row in trip_bot_df.iterrows():
+
+    # Check if row has 3 or fewer reviews
+    if row['ReviewsNo'] <= 3:
+        # For loop for the number of reviews
+        for i in range(row['ReviewsNo']):
+            # Choose random customer
+            customer = copy_customer.sample(n=1)
+            # Define rating
+            rating = get_rating(row, rating_columns)
+            # Define prompt
+            prompt = row['Name']
+            # Get response
+            response = get_completion(prompt, client, messages=messages, temperature=1)
+            # Create dictionary with new information
+            review_dict = {
+                'Username': customer['Username'].values[0],
+                'Place': row['Name'],
+                'OverallRating': row['Rating'],
+                'Review': response,
+                'Rating': rating
+            }
+            # Transform dictionary into DataFrame
+            review_dict = pd.DataFrame([review_dict])
+            # Join DataFrames
+            reviews_df = pd.concat([reviews_df, review_dict], ignore_index=True)
+            # Count if the number of reviews does not exceed the number of trips for the customer
+            copy_customer['ReviewsNo'].iloc[customer.index[0]] += 1
+    else:
+        # For loop to create 3 reviews
+        for i in range(3):
+            # Choose random customer
+            customer = copy_customer.sample(n=1)
+            # Define rating
+            rating = get_rating(row, rating_columns)
+            # Define prompt
+            prompt = row['Name']
+            # Get response
+            response = get_completion(prompt, client, messages=messages, temperature=1)
+            # Create dictionary with new information
+            review_dict = {
+                'Username': customer['Username'].values[0],
+                'Place': row['Name'],
+                'OverallRating': row['Rating'],
+                'Review': response,
+                'Rating': rating
+            }
+            # Transform dictionary into DataFrame
+            review_dict = pd.DataFrame([review_dict])
+            # Join DataFrames
+            reviews_df = pd.concat([reviews_df, review_dict], ignore_index=True)
+            # Count if the number of reviews does not exceed the number of trips for the customer
+            copy_customer['ReviewsNo'].iloc[customer.index[0]] += 1
 
 # Save reviews
 reviews_df.to_csv('./data/reviews.csv', index=False)
