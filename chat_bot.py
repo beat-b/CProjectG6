@@ -3,10 +3,9 @@ ChatBot classes
 """
 from langchain.vectorstores import FAISS
 from util import local_settings
+# from langchain.llms import OpenAI
 from openai import OpenAI
 from embeddings import embeddings
-from langchain.chains import ConversationalRetrievalChain
-
 
 vectorstore = FAISS.load_local("vectorstore/db_faiss", embeddings)
 retriever = vectorstore.as_retriever(search_kwargs={"k": 1})
@@ -75,17 +74,18 @@ class AttractionBot:
         # Include the username in the message if available
         user_message = f"{self._username}: {message}" if self._username else message
 
-        # Use the retrieval chain to get relevant documents
-        matching_documents = self.retrieval_chain.retrieve_documents(user_message)
+        # Retrieve relevant documents from the CSV file
+        documents = retriever.get_relevant_documents(user_message)
 
-        # Extract information from the documents
-        information = self.extract_information(matching_documents)
+        # Generate response using the language model
+        response = self.engine.get_completion(user_message)
 
-        response = f"{information}\n{self.engine.get_completion(user_message)}"
-
-        return response
-
-        
+        # Combine the retrieved documents and the generated response
+        combined_response = f"{documents}\n{response}"
+    
+        return combined_response
+    
+ 
     def __str__(self):
         shift = "   "
         class_name = str(type(self)).split('.')[-1].replace("'>", "")
