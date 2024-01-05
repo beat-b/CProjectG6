@@ -1,0 +1,24 @@
+Prompts Text
+-Prompt for Website-
+Prompt for About Us:
+https://chat.openai.com/share/2890ccd5-fd88-46ea-90e0-1a2bb732dc14
+
+-Prompt for Marketing-
+Prompt for Blog #1:
+https://chat.openai.com/share/7c23c6db-697b-4da8-a343-9ca4d01af76b
+
+Prompt for Blog #2 - Happy Holidays:
+https://chat.openai.com/share/4c811d14-4749-44a6-a93c-4718546fb824
+
+Prompt for 30-second video:
+https://chat.openai.com/share/6033cd41-97db-49b8-9231-d94b726b2d6b
+
+-Other Prompts-
+Out&About - Company Name Prompt:
+https://chat.openai.com/share/499106df-2524-43d5-b911-6afd49fa7561
+
+Out&About - Mission and Vision Prompt:
+https://chat.openai.com/share/c949ea3d-6fce-4c0d-a517-da5c4671f887
+
+Out&About - Tag Line Prompt:
+https://chat.openai.com/share/30394b24-f502-4e63-a838-92e1ba904060
