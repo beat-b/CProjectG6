@@ -2,7 +2,8 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from login import authenticate_user
 from chat_app import chatbot
-from chat_bot import PizzaChatBot
+from chat_bot import AttractionBot
+
 
 def get_session_state():
     return st.session_state
@@ -26,7 +27,23 @@ class OutAndAboutApp:
     def display_home_page(self):
         st.title("Out&About 🛩 MAIN PAGE")
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
-            st.write(f"Welcome, {self.session_state.user_info['username']}!")
+            st.markdown(
+                """
+                <div style="background-color: #3a3839; padding: 20px; border-radius: 10px; color: white;">
+                    <h2>Our Mission</h2>
+                    <h6 style="color: white;">Crafting unique stories in Lisbon, connecting souls globally.</h6>
+                </div>
+                """,unsafe_allow_html=True)
+            st.write("\n")
+            st.markdown(
+                """
+                <div style="background-color: #3a3839; padding: 20px; border-radius: 10px; color: white;">
+                    <h2>Our Vision</h2>
+                    <h6 style="color: white;">Becoming the global standard for personalized travel recommendations, \
+                     enriching journeys through time and space, with recommendations that speak to \
+                     the heart of wanderers.</h6>
+                </div>
+                """,unsafe_allow_html=True)            
         else:
             st.write("You are not authenticated. Please log in.")
 
@@ -42,7 +59,10 @@ class OutAndAboutApp:
     def display_contact_page(self):
         st.title("Out&About 🛩 CONTACT")
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
-            st.write(f"Contact us, {self.session_state.user_info['username']}!")
+            st.write(f"Contact us, {self.session_state.user_info['username']}! \n \
+                    \n **Email**: outaboutcompany@gmail.com \n \
+                    \n **Website**: https://20211631.wixsite.com/out-about \n \
+                    \n **Address**: Campus de Campolide, 1070-312 Lisboa" )
         else:
             st.write("You are not authenticated. Please log in.")
 
@@ -52,7 +72,7 @@ class OutAndAboutApp:
             st.title("You are already authenticated!")
             st.markdown(
                 """
-                <div style="background-color: #4CAF50; padding: 20px; border-radius: 10px; color: white;">
+                <div style="background-color: #3a3839; padding: 20px; border-radius: 10px; color: white;">
                     <h2>Your Authentication Data</h2>
                     <pre>{}</pre>
                 </div>
@@ -89,6 +109,7 @@ class OutAndAboutApp:
                     # Handle the case where authentication fails
                     st.warning("Authentication failed. Please check your credentials.")
 
+
     def run(self):
         st.set_page_config(page_title="Out&About", page_icon="✈️", layout="wide")
 
@@ -100,7 +121,7 @@ class OutAndAboutApp:
             orientation="horizontal",
             styles={
                 # Container styling
-                "container": {"padding": "0!important", "background-color": "#222", "color": "#fff"},
+                "container": {"padding": "0!important", "color": "#fff"},
             },
         )
 
