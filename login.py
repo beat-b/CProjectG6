@@ -1,7 +1,17 @@
+"""
+Streamlit ChatBot Utilities
+
+This module contains utility functions for the Streamlit ChatBot application. It includes functions for user authentication,
+such as social media login buttons and a standard sign-in form. The authentication process involves input validation
+for email, username, and password.
+"""
+
+
+# [i]                                                                                            #
+# [i] Imports                                                                                    #
+# [i]                                                                                            #
 import streamlit as st
 import re
-from streamlit import session_state
-
 
 def is_valid_email(email):
     # Use a regular expression to check if the email is in a valid format
@@ -98,7 +108,7 @@ def authenticate_user():
     st.checkbox("Remember Me")
 
     # Forgot Password link
-    st.markdown("[Forgot Your Password?](#)")  # Add your link or logic here
+    st.markdown("[Forgot Your Password?](#)")  
 
     # "Sign in" button
     submit_button = st.button("Sign in")
@@ -121,8 +131,6 @@ def authenticate_user():
             return (submit_button, None)  # Returning a tuple with the submit button and None
 
         # Placeholder logic to identify the user based on email and password.
-        # Replace this with your actual backend implementation.
-        # For the sake of this example, it returns a hardcoded username.
         user_info = {"username": username, "email": email}        
         return (submit_button, user_info)  # Returning a tuple with the submit button and user info
 

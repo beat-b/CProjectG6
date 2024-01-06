@@ -1,14 +1,33 @@
+"""
+Out&About Streamlit Application
+
+This code defines a Streamlit application for the Out&About platform. The application includes authentication,
+chat functionality, and contact information display. Users can navigate through different pages, and
+authenticated users enjoy personalized experiences. The application leverages the Streamlit option_menu and
+authentication components, creating a seamless and user-friendly interface.
+"""
+
+# [i]                                                                                            #
+# [i] Imports                                                                                    #
+# [i]                                                                                            #
+
 import streamlit as st
+
 from streamlit_option_menu import option_menu
 from login import authenticate_user
 from chat_app import chatbot
-from chat_bot import PizzaChatBot
 
 def get_session_state():
+    """
+    Utility function to retrieve the Streamlit session state.
+    """
     return st.session_state
 
 class OutAndAboutApp:
     def __init__(self):
+        """
+        Initialize the OutAndAboutApp class.
+        """
         self.session_state = get_session_state()
 
         # Initialize session state attributes if not present
@@ -24,6 +43,9 @@ class OutAndAboutApp:
             self.session_state.persistent_authentication_data = None
 
     def display_home_page(self):
+        """
+        Display the Home page content.
+        """
         st.title("Out&About 🛩 MAIN PAGE")
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
             st.write(f"Welcome, {self.session_state.user_info['username']}!")
@@ -31,6 +53,9 @@ class OutAndAboutApp:
             st.write("You are not authenticated. Please log in.")
 
     def display_chat_page(self):
+        """
+        Display the Chat page content.
+        """
         st.title("Out&About 🛩 CHAT")
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
             st.write(f"Welcome to the chat, {self.session_state.user_info['username']}!")
@@ -40,6 +65,9 @@ class OutAndAboutApp:
             st.write("You are not authenticated. Please log in.")
 
     def display_contact_page(self):
+        """
+        Display the Contact page content.
+        """
         st.title("Out&About 🛩 CONTACT")
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
             st.write(f"Contact us, {self.session_state.user_info['username']}!")
@@ -47,6 +75,9 @@ class OutAndAboutApp:
             st.write("You are not authenticated. Please log in.")
 
     def display_authentication_page(self):
+        """
+        Display the Authentication page content.
+        """
         # Check if the user is already authenticated
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
             st.title("You are already authenticated!")
@@ -59,7 +90,6 @@ class OutAndAboutApp:
                 """.format(self.session_state.user_info),
                 unsafe_allow_html=True
             )
-
         else:
             # Your authentication content goes here
             submit_button, user_info = authenticate_user()
@@ -90,6 +120,9 @@ class OutAndAboutApp:
                     st.warning("Authentication failed. Please check your credentials.")
 
     def run(self):
+        """
+        Run the OutAndAboutApp application.
+        """
         st.set_page_config(page_title="Out&About", page_icon="✈️", layout="wide")
 
         # Display the option_menu without setting the default
@@ -103,9 +136,6 @@ class OutAndAboutApp:
                 "container": {"padding": "0!important", "background-color": "#222", "color": "#fff"},
             },
         )
-
-        # Update page based on selected option
-        # self.page = selected_option
 
         # Store the selected option in session_state
         self.session_state.page = selected_option
