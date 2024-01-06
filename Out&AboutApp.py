@@ -51,21 +51,17 @@ class OutAndAboutApp:
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
             st.markdown(
                 """
-                <div style="background-color: #3a3839; padding: 20px; border-radius: 10px; color: white;">
-                    <h2>Our Mission</h2>
-                    <h6 style="color: white;">Crafting unique stories in Lisbon, connecting souls globally.</h6>
-                </div>
-                """,unsafe_allow_html=True)
-            st.write("\n")
-            st.markdown(
-                """
-                <div style="background-color: #3a3839; padding: 20px; border-radius: 10px; color: white;">
-                    <h2>Our Vision</h2>
-                    <h6 style="color: white;">Becoming the global standard for personalized travel recommendations, \
-                     enriching journeys through time and space, with recommendations that speak to \
-                     the heart of wanderers.</h6>
-                </div>
-                """,unsafe_allow_html=True)            
+                <p style="color: #3a3839; font-size: 15px;">At Out&About, we redefine your Lisbon experience with personalized recommendations \
+                tailored just for you. Our cutting-edge bot utilizes advanced machine-learning models \
+                to deliver real-time suggestions on the best activities in the city, taking into account \
+                your unique preferences, group size, budget constraints, and even weather conditions. \
+                Whether you're a first-time visitor or a seasoned explorer, our commitment to enhancing user \
+                satisfaction drives us to continuously refine our recommendation algorithm. Join us on a \
+                journey to make every moment in Lisbon memorable, as we strive to provide you with the \
+                very best recommendations, ensuring your trip is truly exceptional.</p>
+                """, unsafe_allow_html=True 
+                )
+                        
         else:
             st.write("You are not authenticated. Please log in.")
 
@@ -81,16 +77,31 @@ class OutAndAboutApp:
         else:
             st.write("You are not authenticated. Please log in.")
 
+    def display_reviews_page(self):
+        st.title("Out&About 🛩 REVIEWS")
+        if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
+            st.write(f"Welcome to the reviews page, {self.session_state.user_info['username']}!")
+            # Call the initialize_chatbot function
+            # chatbot(self.session_state)
+        else:
+            st.write("You are not authenticated. Please log in.")
+
     def display_contact_page(self):
         """
         Display the Contact page content.
         """
         st.title("Out&About 🛩 CONTACT")
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
-            st.write(f"Contact us, {self.session_state.user_info['username']}! \n \
-                    \n **Email**: outaboutcompany@gmail.com \n \
-                    \n **Website**: https://20211631.wixsite.com/out-about \n \
-                    \n **Address**: Campus de Campolide, 1070-312 Lisboa" )
+            st.write(f"Contact us, {self.session_state.user_info['username']}! \n")
+            st.markdown(
+            """
+            <p style="color: #3a3839;"> 
+                <strong>Email:</strong> outaboutcompany@gmail.com <br>
+                <strong>Website:</strong> <a href="https://20211631.wixsite.com/out-about" style="color: #3a3839;">https://20211631.wixsite.com/out-about</a> <br>
+                <strong>Address:</strong> Campus de Campolide, 1070-312 Lisboa
+            </p>
+            """, unsafe_allow_html=True 
+            )
         else:
             st.write("You are not authenticated. Please log in.")
 
@@ -149,8 +160,8 @@ class OutAndAboutApp:
         # Display the option_menu without setting the default
         selected_option = option_menu(
             menu_title=None,
-            options=["Authentication", "Home", "Chat", "Contact"],
-            icons=["unlock", "house", "chat-dots", "envelope"],
+            options=["Authentication", "Home", "Chat", "Reviews", "Contact"],
+            icons=["unlock", "house", "chat-dots", "star", "envelope"],
             orientation="horizontal",
             styles={
                 # Container styling
