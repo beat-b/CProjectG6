@@ -1,5 +1,15 @@
 import pandas as pd
 import re
+import pandas as pd
+import re
+import nltk
+#Preprocessing: tokenization and lemmatization
+from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.tokenize import PunktSentenceTokenizer
+from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
+sent_tokenizer = PunktSentenceTokenizer()
+
 
 #
 # Clean Data
@@ -118,3 +128,45 @@ def to_number(number: str) -> int:
     extracted_number = int(''.join(extracted_numbers))
     
     return extracted_number
+
+
+def sentiment_preprocessor(raw_text, lowercase=True, leave_punctuation = False, lemmatization=True, tokenized_output=True, sentence_output=True):
+    
+
+    # Convert to lowercase if specified
+    if lowercase:
+        clean_text = raw_text.lower()
+    else:
+        clean_text = raw_text
+    
+    # Remove newline characters
+    clean_text = re.sub(r'(\*|\\n|\\r|\\t|</?ul>|</?li>)', ' ', clean_text)
+
+    # Remove punctuation if specified
+    if not leave_punctuation:
+        clean_text = re.sub(r'(\W)', ' ', clean_text)
+
+    # Remove URLs
+    clean_text = re.sub(r'(http\S+|www\S+)', ' ', clean_text)
+
+    # Remove isolated consonants
+    clean_text = re.sub(r'\b([^aeiou\s])\b', ' ', clean_text)
+
+    # Tokenize
+    clean_text = word_tokenize(clean_text)
+
+    # Lemmatize if specified
+    if lemmatization:
+        clean_text = [lemmatizer.lemmatize(token, pos='v') for token in clean_text]
+
+    # Re-join if tokenized output is not requested
+    if not tokenized_output:
+        clean_text = " ".join(clean_text)
+        # Remove space before punctuation
+        clean_text = re.sub(r'(\s)(?!\w)', '', clean_text)
+
+    # Join sentences into a single string if specified
+    if sentence_output and not tokenized_output:
+        clean_text = " ".join(sent_tokenize(clean_text))
+
+    return clean_text
