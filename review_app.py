@@ -16,30 +16,24 @@ import tempfile
 from review_bot import ReviewChatBot
 
 
-def chatbot(session_state):
+def reviewbot(session_state):
     """
     Initialize the chatbot and UI components.
     """
     def initialize() -> None:
-        with st.expander("Bot Configuration"):
-            # Allow the user to select a predefined prompt
-            selected_prompt_name = st.selectbox(label="Select Prompt", options=prompt_names)
-            session_state.selected_prompt_name = selected_prompt_name  # Store selected prompt in session state
+        # Omit the expander and directly set the prompt name
+        selected_prompt_name = prompt_names[0]  # Assuming you have only one prompt
+        session_state.selected_prompt_name = selected_prompt_name  # Store selected prompt in session state
+        selected_prompt_text = prompt_dict[selected_prompt_name]["prompt"]
+        st.session_state.system_behavior = selected_prompt_text
 
-            # Use the selected prompt name to retrieve the corresponding prompt text
-            selected_prompt_text = prompt_dict[selected_prompt_name]["prompt"]
-            st.session_state.system_behavior = st.text_area(
-                label="Prompt",
-                value=selected_prompt_text
-            )
+        # Retrieve the username from session_state
+        st.session_state.username = st.session_state.username
 
-            # Retrieve the username from session_state
-            st.session_state.username = st.session_state.username
-
-            # Initialize or update the chatbot with the current system behavior and username
-            if "chatbot" not in st.session_state or st.session_state.chatbot.system_behavior != st.session_state.system_behavior:
-                st.session_state.chatbot = ReviewChatBot(st.session_state.system_behavior)
-                st.session_state.chatbot.set_username(st.session_state.username)
+        # Initialize or update the chatbot with the current system behavior and username
+        if "chatbot" not in st.session_state or st.session_state.chatbot.system_behavior != st.session_state.system_behavior:
+            st.session_state.chatbot = ReviewChatBot(st.session_state.system_behavior)
+            st.session_state.chatbot.set_username(st.session_state.username)
 
         with st.sidebar:
             st.markdown(
@@ -82,7 +76,7 @@ def chatbot(session_state):
                 st.markdown(message)
 
     # List of prompt names
-    prompt_names = ["Get a Rating for your Review!"]
+    prompt_names = ["Review to Rating"]
 
     # Review Prompt
     review_prompt = {

@@ -16,6 +16,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from login import authenticate_user
 from chat_app import chatbot
+from review_app import reviewbot
 
 
 def get_session_state():
@@ -82,7 +83,7 @@ class OutAndAboutApp:
         if self.session_state.authentication_status == "authenticated" and self.session_state.user_info is not None:
             st.write(f"Welcome to the reviews page, {self.session_state.user_info['username']}!")
             # Call the initialize_chatbot function
-            # chatbot(self.session_state)
+            reviewbot(self.session_state)
         else:
             st.write("You are not authenticated. Please log in.")
 
@@ -177,6 +178,8 @@ class OutAndAboutApp:
             self.display_home_page()
         elif selected_option == "Chat":
             self.display_chat_page()
+        elif selected_option == "Reviews":
+            self.display_reviews_page()
         elif selected_option == "Contact":
             self.display_contact_page()
         else:
