@@ -94,7 +94,8 @@ This command ensures that the `requirements.txt` file remains up to date with th
 
 
 ## Authors
-[Ana Farinha](https://github.com/AnaBFarinha) <br>
-[Ana Reis](https://github.com/ceiareis) <br>
-[Beatriz Barreto](https://github.com/beat-b) <br>
-[Mariana Neto](https://github.com/MGN19) <br>
+👤The people that contributed to this repository were:
+- [Ana Farinha](https://github.com/AnaBFarinha) <br>
+- [Ana Reis](https://github.com/ceiareis) <br>
+- [Beatriz Barreto](https://github.com/beat-b) <br>
+- [Mariana Neto](https://github.com/MGN19) <br>
