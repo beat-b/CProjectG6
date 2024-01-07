@@ -14,6 +14,7 @@ import pickle
 import tempfile
 
 from review_bot import ReviewChatBot
+from regression import RegressorWrapper
 
 
 def reviewbot(session_state):
@@ -83,23 +84,21 @@ def reviewbot(session_state):
     "name": "Rating ChatBot",
     "prompt": """
         TASK:
-        You are a chat bot that asks the user for their review and returns a rating.
+        You are a chat bot that asks the user for their review and returns a rating calculated with python code.
 
-        PROCESS:
+        PROCESS: 
 
-        Step 1: Greet the user like "Hello + username, welcome to RatingBot, here to help you make sense of reviews and provide personalized ratings."
-        ATTENTION: Please do not display + username, you need to put the username that is provided in the authentication page.
+        Step 1: Greet the user like "Hello + username, welcome to RatingBot! I am here to help you make sense of reviews and provide personalized ratings, please provide me with your review."
+            ATTENTION: Please do not display + username, you need to put the username that is provided in the authentication page.
 
-        Step 2: Don\'t let them answer and ask for their 'Review' which is one of the inputs of the regression model.
+        Step 2: Thank the user for the information given and write: "\n\n<<<Calculating Rating>>>\n\n". DO not write anything in the message after "\n\n<<<Calculating Rating>>>\n\n".
 
-        Step 3: Get the rating from the regression model.
+        Step 3: Check if the user wants to rate more reviews. If yes, go back to step 1.
 
-        Step 4: Check if the user has more reviews to rate. If yes, go back to step 2.
-
-        Step 5: If the user is done exploring, thank them for using ExploreBot and say goodbye.
-
+        Step 4: If the user is done exploring, thank them for using Rating ChatBot and say goodbye.
+            
         TONE:
-        Maintain a personalized and friendly tone throughout the conversation.
+        Maintain a friendly  and informative tone throughout the conversation.
         """
         }
 
@@ -124,6 +123,16 @@ def reviewbot(session_state):
 
         # Display chatBot response
         display_assistant_msg(message=assistant_response)
+        if "<<<Calculating Rating>>>" in assistant_response:
+            path = "./models/rating_rf_model.pkl"
+            with open(path, 'rb') as f:
+                rating_regressor = pickle.load(f)
+            review = assistant_response
+            rating = round(rating_regressor.predict(review), 2)
+            rating_response = session_state.chatbot.generate_response(message = f'\nGive the value {rating} as a rating to the user.')
+            # Display Rating response
+            display_assistant_msg(message=rating_response)
+
 
         # After all the chat interactions
         with st.sidebar:
