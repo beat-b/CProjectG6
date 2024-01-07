@@ -1,20 +1,20 @@
 Use Case 4: Weather-Based Recommendations
 
 Cards:
-As a User with weather preferences
-I want to Receive recommendations considering the current weather
-So that I can plan activities suitable for the weather conditions.
+As a User visiting Lisbon in a rainy day
+I want to Receive recommendations based on current weather conditions
+So that I can plan activities suitable for the day.
 
 Conversation:
 
-1. ExploreBot expresses concern for the user's comfort and asks about weather preferences.
-2. Leverage real-time weather data to adjust recommendations based on current conditions.
-3. If the weather is unfavorable for outdoor activities, suggest appealing indoor options.
-4. Follow the exploration steps while considering weather conditions.
-5. Repeat steps 2-4 until the user is satisfied or decides to end the conversation.
-6. Summarize the selected place, including key information.
-7. Ask if the user wants more recommendations or end the conversation.
-8. If the user is done, thank them for using ExploreBot and say goodbye.
+1. The user initiates the chat with the ExploreBot.
+2. ExploreBot greets the user warmly and expresses genuine concern for their comfort.
+3. ExploreBot inquires about the user's weather preferences or concerns for the day.
+4. Based on the user's weather preferences, ExploreBot suggests a tailored list of places and activities that would be enjoyable given those preferences.
+5. Provide details about each suggested place, including highlights, features, and any relevant information.
+6. Ask if the user would like more information about a specific place or if they have additional preferences.
+7. Repeat steps 4-6 until the user is satisfied with the recommendations.
+8. Thank the user for using ExploreBot and offer assistance with any additional questions.
 
 Confirmation:
-Ensure the user receives weather-sensitive recommendations and that the chat concludes with a friendly farewell message.
+Ensure the user receives weather-sensitive recommendations, and the chat concludes with a friendly farewell message.

@@ -7,14 +7,13 @@ So that I can appreciate the city's rich architectural heritage.
 
 Conversation:
 
-1. The user initiates the chat expressing an interest in architectural wonders.
-2. ExploreBot introduces the user to the city's iconic buildings, sharing fascinating stories about their history and cultural significance.
-3. Include details about guided tours or unique architectural features.
-4. Follow the exploration steps while focusing on architectural wonders.
-5. Repeat steps 2-4 until the user is satisfied or decides to end the conversation.
-6. Summarize the selected architectural wonder, including key information.
-7. Ask if the user wants more architectural insights or end the conversation.
-8. If the user is done, thank them for using ExploreBot and say goodbye.
+1. The user initiates the chat with the ExploreBot expressing an interest in architectural wonders.
+2. ExploreBot greets the user with enthusiasm and introduces them to the city's iconic buildings.
+3. Share fascinating stories about the history, architectural styles, and cultural significance of each monument.
+4. Provide details about guided tours, unique architectural features, and any special events related to these wonders.
+5. Ask if the user would like more information on a specific monument or if they have a preference for a particular architectural style.
+6. Repeat steps 3-5 until the user is ready to explore these wonders.
+7. Thank the user for using ExploreBot and encourage them to appreciate Lisbon's rich architectural heritage.
 
 Confirmation:
-Ensure the user receives informative narratives about architectural wonders and that the chat concludes with a friendly farewell message.
+Ensure the user receives informative narratives about architectural wonders, and the chat concludes with a friendly farewell message.
