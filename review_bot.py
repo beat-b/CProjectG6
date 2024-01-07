@@ -3,6 +3,7 @@
 # [i]                                                                                            #
 from openai import OpenAI
 from util import local_settings
+import pickle
 
 
 # [i]                                                                                            #
@@ -102,6 +103,7 @@ class ReviewChatBot:
             str: Chatbot's response.
         """
         user_message = f"{self._username}: {message}" if self._username else message
+
         response = self.engine.get_completion(user_message)
 
         return response

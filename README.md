@@ -1,4 +1,9 @@
 # CProjectG6
+
+<img src="https://github.com/MGN19/CProjectG6/blob/main/Pictures%2C%20Marketing%20%26%20Prompts/Out%26About_logo.jpg" alt="Out&About Logo" height="100"/>
+Here is the link for a website created to accompany our app:
+https://20211631.wixsite.com/out-about <br>
+
 ## Tourism ChatBot
 This repository is designed to create a chat bot for Out&About. Out&About is fictional company created to help travelers find the best attractions in Lisbon, according to their interests. Currently, the app is still in development as we intend to make it more efficient and add other features. The app was created using streamlit, an open-source Python framework that is both quick and simple to use. For more information on streamlit click here: [Streamlit Docs](https://docs.streamlit.io/).
 
@@ -114,5 +119,3 @@ To access the bot you have to login.
 - [Ana Reis](https://github.com/ceiareis) <br>
 - [Beatriz Barreto](https://github.com/beat-b) <br>
 - [Mariana Neto](https://github.com/MGN19) 
-
-![Out&About Logo](https://github.com/MGN19/CProjectG6/blob/main/Pictures%2C%20Marketing%20%26%20Prompts/Out%26About_logo.jpg)
