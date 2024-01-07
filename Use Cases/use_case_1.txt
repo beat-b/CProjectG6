@@ -9,7 +9,7 @@ Conversation:
 
 1. The user initiates the chat with the ExploreBot.
 2. ExploreBot greets the user and asks if they want a list of recommended places.
-3. If the user agrees, ExploreBot presents categories based on the dataset.
+3. If the user agrees, ExploreBot presents categories of places to visit.
 4. The user selects a category.
 5. ExploreBot provides a list of places in that category with brief information.
 6. The user can ask for more details about a specific place or make a decision.
