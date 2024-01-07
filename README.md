@@ -5,6 +5,7 @@ This repository is designed to create a chat bot for Out&About. Out&About is fic
 ## Table of Contents
 - [Before Starting](#before-starting)
 - [Setup](#project-setup)
+- [App](#app)
 - [Authors](#authors)
 
 
@@ -92,6 +93,13 @@ pip freeze > requirements.txt
 
 This command ensures that the `requirements.txt` file remains up to date with the latest package installations and versions in your environment.
 
+## App
+
+🌐 To view the app on your browser open the terminal and run:
+```bash
+streamlit run "Out&AboutApp.py"
+```
+> ⏳Please be aware that running the app and asking a question to the chatbot might take a few minutes. Don't close your tab or the terminal.
 
 ## Authors
 👤The people that contributed to this repository were:
