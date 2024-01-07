@@ -1,0 +1,20 @@
+Use Case 4: Weather-Based Recommendations
+
+Cards:
+As a User with weather preferences
+I want to Receive recommendations considering the current weather
+So that I can plan activities suitable for the weather conditions.
+
+Conversation:
+
+1. ExploreBot expresses concern for the user's comfort and asks about weather preferences.
+2. Leverage real-time weather data to adjust recommendations based on current conditions.
+3. If the weather is unfavorable for outdoor activities, suggest appealing indoor options.
+4. Follow the exploration steps while considering weather conditions.
+5. Repeat steps 2-4 until the user is satisfied or decides to end the conversation.
+6. Summarize the selected place, including key information.
+7. Ask if the user wants more recommendations or end the conversation.
+8. If the user is done, thank them for using ExploreBot and say goodbye.
+
+Confirmation:
+Ensure the user receives weather-sensitive recommendations and that the chat concludes with a friendly farewell message.

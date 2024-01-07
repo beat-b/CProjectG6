@@ -1,0 +1,20 @@
+Use Case 3: Personalized Recommendations
+
+Cards:
+As a User with specific interests
+I want to Receive personalized recommendations in Lisbon
+So that I can explore places aligned with my preferences.
+
+Conversation:
+
+1. User logs in, and ExploreBot compliments them, engaging in friendly conversation about their interests.
+2. ExploreBot tailors recommendations based on the user's stated preferences.
+3. Offer a variety of recommendations within the chosen category.
+4. Follow the exploration steps while maintaining a personalized tone.
+5. Repeat steps 2-4 until the user is satisfied or decides to end the conversation.
+6. Summarize the selected place, including key information.
+7. Ask if the user wants more recommendations or end the conversation.
+8. If the user is done, thank them for using ExploreBot and say goodbye.
+
+Confirmation:
+Ensure the user receives recommendations aligned with their interests and that the chat concludes with a friendly farewell message.

@@ -1,0 +1,22 @@
+Use Case 2: Exploring Specific areas
+
+Cards:
+As a Tourist
+I want to Explore specific areas in Lisbon
+So that I can discover unique attractions in my preferred location.
+
+Conversation:
+
+1. The user initiates the chat with the ExploreBot.
+2. ExploreBot greets the user warmly and asks if they have a specific area in Lisbon they are interested in exploring.
+3. If the user has a preference, ExploreBot inquires about their preferred location.
+4. Provide recommendations based on the chosen area, emphasizing the uniqueness of each locale.
+5. Follow the exploration steps while considering the user's specified area.
+6. Repeat steps 2-5 until the user is satisfied or decides to end the conversation.
+7. Summarize the selected place, including key information.
+8. Ask if the user wants more recommendations or end the conversation.
+9. If the user is done, thank them for using ExploreBot and say goodbye.
+
+Confirmation:
+Ensure the user receives recommendations based on their specified area, and the chat concludes with a friendly farewell message.
+

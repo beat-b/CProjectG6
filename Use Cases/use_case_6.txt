@@ -1,0 +1,21 @@
+Use Case 6: Nightlife Recommendations
+
+Cards:
+As a Nightlife Explorer
+I want to Receive recommendations for nightlife places in Lisbon
+So that I can have an exciting night out in the city.
+
+Conversation:
+
+1. The user initiates the chat expressing an interest in exploring nightlife.
+2. ExploreBot recommends hotspots for an exciting night out, including popular bars, lively clubs, and late-night eateries.
+3. Provide insights into themed events, live music performances, and any exclusive happenings.
+4. Follow the exploration steps while focusing on nightlife recommendations.
+5. Repeat steps 2-4 until the user is satisfied or decides to end the conversation.
+6. Summarize the selected nightlife spot, including key information.
+7. Ask if the user wants more nightlife recommendations or end the conversation.
+8. If the user is done, thank them for using ExploreBot and say goodbye.
+
+
+Confirmation:
+Ensure the user receives vibrant nightlife recommendations, and the chat concludes with a friendly farewell message.

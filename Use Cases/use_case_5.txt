@@ -1,0 +1,20 @@
+Use Case 5: Architectural Exploration
+
+Cards:
+As a History Enthusiast
+I want to Learn about architectural wonders in Lisbon
+So that I can appreciate the city's rich architectural heritage.
+
+Conversation:
+
+1. The user initiates the chat expressing an interest in architectural wonders.
+2. ExploreBot introduces the user to the city's iconic buildings, sharing fascinating stories about their history and cultural significance.
+3. Include details about guided tours or unique architectural features.
+4. Follow the exploration steps while focusing on architectural wonders.
+5. Repeat steps 2-4 until the user is satisfied or decides to end the conversation.
+6. Summarize the selected architectural wonder, including key information.
+7. Ask if the user wants more architectural insights or end the conversation.
+8. If the user is done, thank them for using ExploreBot and say goodbye.
+
+Confirmation:
+Ensure the user receives informative narratives about architectural wonders and that the chat concludes with a friendly farewell message.

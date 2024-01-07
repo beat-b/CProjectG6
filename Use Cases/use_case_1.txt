@@ -1,0 +1,24 @@
+Use Case 1: Exploring Recommended Places
+
+Cards:
+As a Tourist
+I want to Explore recommended places in Lisbon
+So that I can discover the best attractions based on categories.
+
+Conversation:
+
+1. The user initiates the chat with the ExploreBot.
+2. ExploreBot greets the user and asks if they want a list of recommended places.
+3. If the user agrees, ExploreBot presents categories based on the dataset.
+4. The user selects a category.
+5. ExploreBot provides a list of places in that category with brief information.
+6. The user can ask for more details about a specific place or make a decision.
+7. Repeat steps 3-6 until the user selects a place or ends exploration.
+8. Summarize the selected place, including key information.
+9. Ask if the user wants to explore more places or end the conversation.
+10. If the user is done, thank them for using ExploreBot and say goodbye.
+
+
+Confirmation:
+Ensure the user receives relevant recommendations based on their selected category and that the chat concludes with a friendly farewell message.
+

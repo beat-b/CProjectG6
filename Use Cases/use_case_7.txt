@@ -1,0 +1,16 @@
+Use Case 7: CSV File Upload
+
+Cards:
+As a User with a CSV file
+I want to Upload a CSV file with my preferences
+So that I can receive information based on my provided data.
+
+Conversation:
+
+1. The user initiates the chat by uploading the CSV file.
+2. The bot will be able to get the information from the CSV file.
+3. The user asks anything that he might want to know.
+4. The bot answers the questions.
+
+Confirmation:
+Ensure the user receives the answers based on the uploaded CSV file.
