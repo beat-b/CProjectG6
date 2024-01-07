@@ -1,6 +1,6 @@
 # CProjectG6
 ## Tourism ChatBot
-This repository is designed to create a chat bot for Out&About. Out&About is fictional company created to help travelers find the best attractions in Lisbon, according to their interests. The app was created using streamlit. For more information on streamlit click here: [Streamlit Docs](https://docs.streamlit.io/).
+This repository is designed to create a chat bot for Out&About. Out&About is fictional company created to help travelers find the best attractions in Lisbon, according to their interests. Currently, the app is still in development as we intend to make it more efficient and add other features. The app was created using streamlit, an open-source Python framework that is bot quick and simple to use. For more information on streamlit click here: [Streamlit Docs](https://docs.streamlit.io/).
 
 ## Table of Contents
 - [Before Starting](#before-starting)
