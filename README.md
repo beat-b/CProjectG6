@@ -93,3 +93,10 @@ pip freeze > requirements.txt
 ```
 
 This command ensures that the `requirements.txt` file remains up to date with the latest package installations and versions in your environment.
+
+
+## Authors
+[Ana Farinha](https://github.com/AnaBFarinha)
+[Ana Reis](https://github.com/ceiareis)
+[Beatriz Barreto](https://github.com/beat-b)
+[Mariana Neto](https://github.com/MGN19)
