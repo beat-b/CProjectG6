@@ -6,6 +6,7 @@ This repository is designed to create a chat bot for Out&About. Out&About is fic
 - [Before Starting](#before-starting)
 - [Setup](#project-setup)
 - [App](#app)
+- [Sources](#sources)
 - [Authors](#authors)
 
 
@@ -28,7 +29,7 @@ If you don't already have an OpenAI Key, it's essential to create one at <https:
 ```text
 OPENAI_API_KEY=sk-xiu...
 ```
-> 📝**Note**: Ensure that the variable in the `.env` file is named `OPENAI_API_KEY`, as demonstrated in the code above. This specific name aligns with the `Settings` class in the `util.py` file, which is a specialization of the `BaseSettings` from the `pydantic-settings` package.
+> 📝 **Note**: Ensure that the variable in the `.env` file is named `OPENAI_API_KEY`, as demonstrated in the code above. This specific name aligns with the `Settings` class in the `util.py` file, which is a specialization of the `BaseSettings` from the `pydantic-settings` package.
 
 After this, you need to activate it and install the packages listed in requirements.txt. Here are the steps:
 
@@ -38,7 +39,7 @@ After this, you need to activate it and install the packages listed in requireme
 python -m venv env
 ```
 
-> 📝**Note**: `env` is the standard name for a Python environment.
+> 📝 **Note**: `env` is the standard name for a Python environment.
 
 ### Step 3: Activate the Python environment
 
@@ -99,10 +100,17 @@ This command ensures that the `requirements.txt` file remains up to date with th
 ```bash
 streamlit run "Out&AboutApp.py"
 ```
-> ⏳Please be aware that running the app and asking a question to the chatbot might take a few minutes. Don't close your tab or the terminal.
+> ⏳ Please be aware that running the app and asking a question to the chatbot might take a few minutes. Don't close your tab or the terminal.
+
+To access the bot you have to login.
+
+## Sources
+📑 These libraries were crucial for the development of this project:
+- [Streamlit](https://docs.streamlit.io/)
+- [Langchain](https://python.langchain.com/docs/get_started/introduction)
 
 ## Authors
-👤The people that contributed to this repository were:
+👤 The people that contributed to this repository were:
 - [Ana Farinha](https://github.com/AnaBFarinha) <br>
 - [Ana Reis](https://github.com/ceiareis) <br>
 - [Beatriz Barreto](https://github.com/beat-b) <br>
