@@ -1,0 +1,83 @@
+Description of the datasets
+
+# LisbonTrip_Final.csv
+This dataset has data extracted from TripAdvisor website: https://www.tripadvisor.com/. In this dataset, 
+ we have information about several places that we can visit and activities we can do in Lisbon. Below,
+ are the variables and a small description of each one:
+    - web-scraper-order: order in which the data was scrapped.
+    - web-scraper-start-url: url of the start page.
+    - Link: ranking of the activity and its name.
+    - Link-href: link of the activity.
+    - Name: name of the activity.
+    - Types: types of activity.
+    - About: small description about the activity,
+    - Schedule: schedule of the activity, if it has any.
+    - Duration: duration of the activity.
+    - Address: address of the activity/place.
+    - Rating: the overall rating of the activity.
+    - ReviewsNo: number of reviews the activity has.
+    - ExcellentRating: number of ratings between 4.1 and 5 stars.
+    - VeryGoodRating: number of ratings between 3.1 and 4 stars.
+    - AverageRating: number of ratings between 2.1 and 3 stars.
+    - PoorRating: number of ratings between 1.1 and 2 stars.
+    - TerribleRating: number of ratings between 0 and 1 stars.
+
+# cleanTripLisbon.csv
+This dataset was created from LisbonTrip_Final.csv. The data was cleaned, some was transformed and some datatypes were changed.
+ Below, are our renovated variables:
+    - Link-href: link of the activity.
+    - Name: name of the activity.
+    - Types: types of activity.
+    - About: small description about the activity,
+    - Duration: duration of the activity.
+    - Address: address of the activity/place.
+    - Rating: the overall rating of the activity.
+    - ReviewsNo: number of reviews the activity has.
+    - ExcellentRating: number of ratings between 4.1 and 5 stars.
+    - VeryGoodRating: number of ratings between 3.1 and 4 stars.
+    - AverageRating: number of ratings between 2.1 and 3 stars.
+    - PoorRating: number of ratings between 1.1 and 2 stars.
+    - TerribleRating: number of ratings between 0 and 1 stars.
+    - StartTime: the time the activity starts.
+    - EndTime: the time the activity ends.
+    - LunchStart: time the lunch hour starts.
+    - LunchEnd: time the lunch hour ends.
+    - DurationMin: minimum recommended time in the activity.
+    - DurationMax: maximum recommended time in the activity.
+
+# prec_Lisbon.csv
+In this dataset, we have the total precipitation in millimeters in Lisbon. It has monthly and quarterly data from 1931 until 2020.
+ This data was extracted from https://www.ipma.pt/en/index.html.
+
+# temp_Lisbon.csv
+In this dataset, we have three variables about the temperatures in Lisbon. It has monthly data from 1931 until 2020.
+ This data was extracted from https://www.ipma.pt/en/index.html. The variables are as follows:
+    - tmax: maximum temperature.
+    - tmin: minimum temperature.
+    - tmed: average temperature.
+
+# customer_data.csv
+In this dataset, some variables about our users can be found. Some are related to authentication,
+ others to the app itself and some to personal data. Below, there is a description of each variable:
+    - Username: unique name of the user.
+    - Email: email of the user.
+    - Password: password of the user.
+    - Age: age of the user.
+    - Planned Trips: number of trips made planning using Out&About.
+    - Disabilities: users' disabilities if the user has any.
+
+# copy_customer.csv
+This dataset was created to generate reviews. We selected some users and created some reviews randomly. 
+ This dataset was created using two variables from customer_data.csv.
+    - Username: unique name of the user.
+    - Planned Trips: number of trips made planning using Out&About.
+    - ReviewsNo: number of reviews the user has made.
+
+# reviews.csv
+This dataset has reviews that were artificially created. It has data from cleanTripLisbon.csv and copy_customer.csv.
+ Below are the variables the dataset has and a small description for each:
+    - Username: username of the user that has written the review.
+    - Place: place/activity that was reviewed.
+    - OverallRating: rating of the reviewed activity.
+    - Review: review of the user about the activity.
+    - Rating: rating the user gave to the activity.
