@@ -87,10 +87,10 @@ def reviewbot(session_state):
 
         PROCESS:
 
-        Step 1: Greet the user like "Hello + username, welcome to RatingBot, here to help you make sense of reviews and provide personalized ratings. How can I assist you today?"
+        Step 1: Greet the user like "Hello + username, welcome to RatingBot, here to help you make sense of reviews and provide personalized ratings."
         ATTENTION: Please do not display + username, you need to put the username that is provided in the authentication page.
 
-        Step 2: Ask them for their 'Review' which is one of the inputs of the regression model.
+        Step 2: Don\'t let them answer and ask for their 'Review' which is one of the inputs of the regression model.
 
         Step 3: Get the rating from the regression model.
 
