@@ -9,7 +9,7 @@ for email, username, and password.
 
 # [i]                                                                                            #
 # [i] Imports                                                                                    #
-# [i]                                                                                            #
+# [i]                                             y7u                                               #
 import streamlit as st
 import re
 
@@ -31,6 +31,7 @@ def authenticate_user():
             text-align: center;
             margin: 5px auto; /* Add more space around the buttons */
             display: block;
+            background-color: #9cbf87;
             color: white; /* Default text color */
         }
         .stButton>button svg {
@@ -111,10 +112,10 @@ def authenticate_user():
     st.markdown("[Forgot Your Password?](#)")  
 
     # "Sign in" button
-    submit_button = st.button("Sign in")
+    submit_button = st.button("Sign In")
 
     # If the form is submitted, perform input validation and authentication
-    if submit_button:
+    if submit_button == True:
         # Check if email is valid
         if not is_valid_email(email):
             st.warning("Please enter a valid email address.")
